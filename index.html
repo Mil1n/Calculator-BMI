@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Calculator — Smart Health Assistant</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="intro-card" aria-labelledby="page-title">
+        <div class="eyebrow">🧮 Smart Health Assistant</div>
+        <h1 id="page-title">BMI Calculator</h1>
+        <p>
+          Рассчитай индекс массы тела и получи спокойные рекомендации без давления,
+          сравнений и медицинских диагнозов.
+        </p>
+      </section>
+
+      <section class="calculator-card" aria-label="Форма расчёта BMI">
+        <form class="bmi-form" data-bmi-form>
+          <div class="field-group">
+            <label for="height">Рост</label>
+            <input id="height" name="height" type="text" inputmode="decimal" placeholder="Например: 175 или 1.75" required />
+            <span>Можно ввести в сантиметрах или метрах.</span>
+          </div>
+
+          <div class="field-group">
+            <label for="weight">Вес</label>
+            <input id="weight" name="weight" type="text" inputmode="decimal" placeholder="Например: 68" required />
+            <span>Укажи вес в килограммах.</span>
+          </div>
+
+          <div class="optional-grid">
+            <div class="field-group">
+              <label for="gender">Пол <em>опционально</em></label>
+              <select id="gender" name="gender">
+                <option value="">Не указывать</option>
+                <option value="female">Женский</option>
+                <option value="male">Мужской</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="age">Возраст <em>опционально</em></label>
+              <input id="age" name="age" type="number" min="1" max="129" placeholder="Например: 32" />
+            </div>
+          </div>
+
+          <button class="primary-button" type="submit">Рассчитать BMI ✨</button>
+          <p class="helper-text" data-helper-text>Введи рост и вес — я аккуратно всё посчитаю.</p>
+        </form>
+      </section>
+
+      <section class="result-card" data-result-panel hidden aria-live="polite">
+        <div data-result-content></div>
+      </section>
+
+      <section class="cta-card" data-cta-panel hidden>
+        <h2>Хочешь продолжить?</h2>
+        <p>Могу показать ещё пару полезных ориентиров — легко и без навязывания.</p>
+        <div class="cta-actions">
+          <button type="button" data-ideal-weight>Хочешь рассчитать идеальный вес?</button>
+          <button type="button" data-nutrition-tips>Показать советы по питанию?</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="src/bmi.js"></script>
+    <script src="src/app.js"></script>
+  </body>
+</html>

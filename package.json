@@ -1,0 +1,17 @@
+{
+  "name": "bmi-smart-health-assistant",
+  "version": "1.0.0",
+  "description": "A friendly Russian-language BMI calculator with wellness recommendations.",
+  "private": true,
+  "scripts": {
+    "test": "node tests/bmi.test.js",
+    "start": "python3 -m http.server 4173"
+  },
+  "keywords": [
+    "bmi",
+    "calculator",
+    "health"
+  ],
+  "author": "",
+  "license": "MIT"
+}

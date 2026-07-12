@@ -160,6 +160,7 @@ h1 {
 }
 
 .primary-button,
+.secondary-button,
 .cta-actions button {
   border: 0;
   border-radius: 18px;
@@ -175,6 +176,7 @@ h1 {
 }
 
 .primary-button:hover,
+.secondary-button:hover,
 .cta-actions button:hover {
   transform: translateY(-2px);
 }
@@ -277,5 +279,113 @@ h1 {
   .app-shell {
     width: min(100% - 20px, 1040px);
     padding: 24px 0;
+  }
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.secondary-button {
+  border: 1px solid #dfe5f1;
+  border-radius: 18px;
+  padding: 15px 20px;
+  color: var(--primary-dark);
+  background: #fff;
+  font-weight: 850;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.secondary-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(42, 51, 84, 0.1);
+}
+
+.weight-range-card,
+.history-list li {
+  border: 1px solid #e5eaf4;
+  border-radius: 22px;
+  padding: 18px;
+  background: #fff;
+}
+
+.notice--accent {
+  margin-top: 18px;
+  border: 1px solid rgba(244, 185, 66, 0.45);
+  background: #fff8e8;
+}
+
+.history-list {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.history-list li {
+  display: grid;
+  gap: 6px;
+}
+
+.history-list span {
+  color: var(--muted);
+}
+
+[data-result-content]:focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --bg: #0f1424;
+    --card: rgba(24, 31, 52, 0.88);
+    --ink: #eef2ff;
+    --muted: #aab5d1;
+    --primary: #8f82ff;
+    --primary-dark: #b7afff;
+    --ring: rgba(143, 130, 255, 0.28);
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+  }
+
+  .field-group input,
+  .field-group select,
+  .scale-card,
+  .secondary-button,
+  .weight-range-card,
+  .history-list li {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .notice,
+  .personal-note {
+    background: rgba(143, 130, 255, 0.14);
+  }
+
+  .notice--accent {
+    border-color: rgba(244, 185, 66, 0.32);
+    background: rgba(244, 185, 66, 0.12);
+  }
+
+  .error-card {
+    background: rgba(255, 107, 107, 0.16);
+    color: #ffc4c4;
+  }
+
+  .cta-actions button {
+    background: rgba(143, 130, 255, 0.16);
   }
 }

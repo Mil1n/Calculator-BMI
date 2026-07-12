@@ -43,17 +43,41 @@
 
             <div class="field-group">
               <label for="age">Возраст <em>опционально</em></label>
-              <input id="age" name="age" type="number" min="1" max="129" placeholder="Например: 32" />
+              <input id="age" name="age" type="number" min="1" max="129" step="1" placeholder="Например: 32" />
+            </div>
+
+            <div class="field-group">
+              <label for="goal">Цель <em>опционально</em></label>
+              <select id="goal" name="goal">
+                <option value="">Не указывать</option>
+                <option value="maintain">Поддерживать вес</option>
+                <option value="gain">Набрать вес</option>
+                <option value="lose">Снизить вес</option>
+                <option value="learn">Просто узнать BMI</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="activity">Активность <em>опционально</em></label>
+              <select id="activity" name="activity">
+                <option value="">Не указывать</option>
+                <option value="low">Низкая</option>
+                <option value="medium">Умеренная</option>
+                <option value="high">Высокая</option>
+              </select>
             </div>
           </div>
 
-          <button class="primary-button" type="submit">Рассчитать BMI ✨</button>
+          <div class="form-actions">
+            <button class="primary-button" type="submit">Рассчитать BMI ✨</button>
+            <button class="secondary-button" type="reset" data-reset-form>Сбросить</button>
+          </div>
           <p class="helper-text" data-helper-text>Введи рост и вес — я аккуратно всё посчитаю.</p>
         </form>
       </section>
 
       <section class="result-card" data-result-panel hidden aria-live="polite">
-        <div data-result-content></div>
+        <div data-result-content tabindex="-1"></div>
       </section>
 
       <section class="cta-card" data-cta-panel hidden>

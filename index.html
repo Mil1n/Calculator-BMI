@@ -3,13 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Дружелюбный русскоязычный калькулятор BMI с подсказками, историей и бережными рекомендациями." />
+    <meta property="og:title" content="BMI Calculator — Smart Health Assistant" />
+    <meta property="og:description" content="Рассчитай BMI, ориентировочный диапазон веса и получи спокойные рекомендации без давления." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%236c5ce7'/%3E%3Ctext x='32' y='42' font-size='30' text-anchor='middle'%3E%E2%9A%96%EF%B8%8F%3C/text%3E%3C/svg%3E" />
     <title>BMI Calculator — Smart Health Assistant</title>
     <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
     <main class="app-shell">
       <section class="intro-card" aria-labelledby="page-title">
-        <div class="eyebrow">🧮 Smart Health Assistant</div>
+        <div class="top-bar">
+          <div class="eyebrow">🧮 Smart Health Assistant</div>
+          <div class="theme-switcher" aria-label="Выбор темы">
+            <button type="button" data-theme-choice="system" aria-pressed="true">Система</button>
+            <button type="button" data-theme-choice="light" aria-pressed="false">Светлая</button>
+            <button type="button" data-theme-choice="dark" aria-pressed="false">Тёмная</button>
+          </div>
+        </div>
         <h1 id="page-title">BMI Calculator</h1>
         <p>
           Рассчитай индекс массы тела и получи спокойные рекомендации без давления,
@@ -86,11 +98,14 @@
         <div class="cta-actions">
           <button type="button" data-ideal-weight>Хочешь рассчитать идеальный вес?</button>
           <button type="button" data-nutrition-tips>Показать советы по питанию?</button>
+          <button type="button" data-export-history>Скачать историю CSV</button>
+          <button type="button" data-clear-history>Очистить историю</button>
         </div>
       </section>
     </main>
 
     <script src="src/bmi.js"></script>
+    <script src="src/history.js"></script>
     <script src="src/app.js"></script>
   </body>
 </html>

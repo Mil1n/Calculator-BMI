@@ -134,6 +134,58 @@
     return BMI_CATEGORIES.find((category) => bmi >= category.min && bmi < category.max);
   }
 
+  function calculateWeightChangePreview(weightKg, heightMeters) {
+    const delta = Math.max(1, Math.round(weightKg * 0.05));
+    const lowerWeight = Math.max(WEIGHT_LIMITS.min, weightKg - delta);
+    const higherWeight = Math.min(WEIGHT_LIMITS.max, weightKg + delta);
+
+    return {
+      delta,
+      lower: {
+        weight: Math.round(lowerWeight * 10) / 10,
+        bmi: calculateBmi(lowerWeight, heightMeters)
+      },
+      higher: {
+        weight: Math.round(higherWeight * 10) / 10,
+        bmi: calculateBmi(higherWeight, heightMeters)
+      }
+    };
+  }
+
+  function getNutritionTips(categoryKey, goal = '', activity = '') {
+    const tipsByCategory = {
+      underweight: [
+        'Добавляй к привычным блюдам питательные ингредиенты: орехи, авокадо, сыр, яйца, рыбу или бобовые.',
+        'Если сложно добирать калории, попробуй 1–2 дополнительных перекуса между основными приёмами пищи.'
+      ],
+      normal: [
+        'Сохраняй разнообразие: половина тарелки овощи или фрукты, четверть белок и четверть сложные углеводы.',
+        'Поддерживай стабильный режим питания, который не мешает энергии, сну и тренировкам.'
+      ],
+      overweight: [
+        'Начни с мягких замен: вода вместо сладких напитков, больше овощей и чуть меньше ультрапереработанных перекусов.',
+        'Выбирай постепенные изменения, которые можно повторять неделями, а не строгие короткие ограничения.'
+      ],
+      obesity: [
+        'Сфокусируйся на безопасных маленьких шагах: регулярные приёмы пищи, больше белка и клетчатки, меньше жидких калорий.',
+        'Если есть возможность, обсуди питание со специалистом — индивидуальный план обычно спокойнее и безопаснее.'
+      ]
+    };
+    const tips = [...(tipsByCategory[categoryKey] || tipsByCategory.normal)];
+
+    if (goal === 'gain') {
+      tips.push('Для набора веса полезнее увеличивать порции постепенно и сочетать питание с силовыми нагрузками.');
+    } else if (goal === 'lose') {
+      tips.push('Для снижения веса лучше начинать с умеренного дефицита и не убирать целые группы продуктов без причины.');
+    }
+
+    if (activity === 'high') {
+      tips.push('При высокой активности не забывай про восстановление, воду и достаточное количество углеводов вокруг нагрузок.');
+    }
+
+    return tips;
+  }
+
   function getPersonalNote({ age, gender, goal, activity }) {
     const notes = [];
 
@@ -191,7 +243,9 @@
       weightKg,
       healthyWeightRange: calculateHealthyWeightRange(heightMeters),
       isChildOrTeen: Boolean(normalizedAge && normalizedAge < 18),
-      personalNotes: getPersonalNote({ age: normalizedAge, gender, goal, activity })
+      nutritionTips: getNutritionTips(category.key, goal, activity),
+      personalNotes: getPersonalNote({ age: normalizedAge, gender, goal, activity }),
+      weightChangePreview: calculateWeightChangePreview(weightKg, heightMeters)
     };
   }
 
@@ -205,7 +259,9 @@
     buildResult,
     calculateBmi,
     calculateHealthyWeightRange,
+    calculateWeightChangePreview,
     getCategory,
+    getNutritionTips,
     normalizeAge,
     normalizeHeight,
     normalizeWeight

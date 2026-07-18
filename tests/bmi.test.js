@@ -110,4 +110,8 @@ test('stores, deduplicates, clears, and exports history', () => {
   assert.equal(getHistory(storage).length, 0);
 });
 
+const teenResult = buildResult({ height: '165', weight: '55', age: '16' });
+assert.equal(teenResult.isChildOrTeen, true);
+assert.match(teenResult.personalNotes[0], /возрастно-половым/);
+
 console.log('BMI calculation tests passed');
